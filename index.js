@@ -10,9 +10,37 @@
 var inquirer = require('inquirer');
 
 // TODO: Create an array of questions for user input
-const questions = [{
-    
-}];
+const questions = [
+    {
+        type: 'input',
+        name: 'productname',
+        message: 'What is the name of your package?',
+    }, {
+        type: 'confirm',
+        name: 'includeimage',
+        message: 'Would you like to include Carleton image?',
+        default: false,
+    },
+    {
+        type: 'confirm',
+        name: 'includebadge',
+        message: 'Would you like to include badges?',
+        default: false,
+    },
+    {
+        type: 'checkbox',
+        name: 'badges',
+        message: 'Please select the badges you like to include',
+        choices: [
+            { name: "npm" },
+            { name: "asp" },
+            { name: "javascript" }
+        ],
+        when(answers) {
+            return answers.includebadge !== false;
+        },
+    },
+];
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) { }
@@ -21,10 +49,11 @@ function writeToFile(fileName, data) { }
  * Initialize arrays and other global requirements to be executed on load.
  */
 function init() {
+    
     inquirer
         .prompt(questions)
         .then((answers) => {
-            // Use user feedback for... whatever!!
+            console.log(answers);
         })
         .catch((error) => {
             if (error.isTtyError) {
