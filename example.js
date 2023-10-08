@@ -16,20 +16,9 @@ const saucesArray = ["Marinara", "BBQ", "Alfredo Sauce"];
 
 // Let's decide what toppings we offer
 const toppingsArray = [
-    "Cheese",
-    "Extra Cheese",
-    "Ham",
-    "Beef",
-    "Pepperoni",
-    "Chicken",
-    "Bacon",
-    "Jalapeños",
-    "Onions",
-    "Banana Peppers",
-    "Olives",
-    "Mushrooms",
-    "Pineapple",
-    "Green Peppers",
+    "Cheese","Extra Cheese","Ham","Beef","Pepperoni","Chicken","Bacon",
+    "Jalapeños","Onions","Banana Peppers","Olives","Mushrooms",
+    "Pineapple","Green Peppers",
 ];
 
 // This function allows us to clear out the order variable

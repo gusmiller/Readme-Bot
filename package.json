@@ -4,7 +4,7 @@
   "description": "This node script application will generate the Readme file. This is part of my assignment at Carleton Coding Bootcamp",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -21,7 +21,8 @@
   },
   "homepage": "https://github.com/gusmiller/Readme-Bot#readme",
   "dependencies": {
-    "chalk": "^5.3.0",
+    "chalk": "^4.1.2",
+    "email-validator": "^2.0.4",
     "inquirer": "^8.2.4"
   }
 }

@@ -7,7 +7,8 @@
  */
 
 // TODO: Include packages needed for this application
-var inquirer = require('inquirer');
+const inquirer = require('inquirer');
+const chalk = require('chalk');
 
 // TODO: Create an array of questions for user input
 const questions = [
@@ -15,17 +16,24 @@ const questions = [
         type: 'input',
         name: 'productname',
         message: 'What is the name of your package?',
-    }, {
+        validate(value) {
+            if (value.length == 0) {
+                return chalk.red('You must enter a product name! Press Ctrl-C to cancel');
+            }
+            return true;
+        }
+    },
+    {
         type: 'confirm',
         name: 'includeimage',
         message: 'Would you like to include Carleton image?',
-        default: false,
+        default: false
     },
     {
         type: 'confirm',
         name: 'includebadge',
         message: 'Would you like to include badges?',
-        default: false,
+        default: false
     },
     {
         type: 'checkbox',
@@ -38,8 +46,23 @@ const questions = [
         ],
         when(answers) {
             return answers.includebadge !== false;
-        },
+        }
     },
+    {
+        type: 'confirm',
+        name: 'includelicense',
+        message: 'Would you like to include license section?',
+        default: true
+    },
+    {
+        type: 'input',
+        name: 'licensetext',
+        message: 'Please enter the license section',
+        when(answers) {
+            return answers.includelicense !== false;
+        }
+    }
+
 ];
 
 // TODO: Create a function to write README file
@@ -49,7 +72,7 @@ function writeToFile(fileName, data) { }
  * Initialize arrays and other global requirements to be executed on load.
  */
 function init() {
-    
+
     inquirer
         .prompt(questions)
         .then((answers) => {
