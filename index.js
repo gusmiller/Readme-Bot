@@ -10,62 +10,11 @@
 const inquirer = require('inquirer');
 const chalk = require('chalk');
 
-const badges = ["HTML5", ".NET", "javascript", "jQuery", "nodedotjs", "Bootstrap", "CSS3", "github"]
-
-// TODO: Create an array of questions for user input
-const questions = [
-    {
-        type: 'input',
-        name: 'productname',
-        message: 'What is the name of your package?',
-        validate(value) {
-            if (value.length == 0) {
-                return chalk.red('You must enter a product name! Press Ctrl-C to cancel');
-            }
-            return true;
-        }
-    },
-    {
-        type: 'confirm',
-        name: 'includeimage',
-        message: 'Would you like to include Carleton image?',
-        default: false
-    },
-    {
-        type: 'confirm',
-        name: 'includebadge',
-        message: 'Would you like to include badges?',
-        default: false
-    },
-    {
-        type: 'checkbox',
-        name: 'badges',
-        message: 'Please select the badges you like to include',
-        choices: [
-            { name: "npm" },
-            { name: "asp" },
-            { name: "javascript" }
-        ],
-        when(answers) {
-            return answers.includebadge !== false;
-        }
-    },
-    {
-        type: 'confirm',
-        name: 'includelicense',
-        message: 'Would you like to include license section?',
-        default: true
-    },
-    {
-        type: 'input',
-        name: 'licensetext',
-        message: 'Please enter the license section',
-        when(answers) {
-            return answers.includelicense !== false;
-        }
-    }
-
-];
+import {
+    arrbadges, descriptionfill, badgesquestions,
+    description, manualdescription, questions
+} from './utils/arrays.js';
+import { p1, p2 } from './utils/parragraphs.js'
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) { }
