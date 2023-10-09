@@ -10,6 +10,8 @@
 const inquirer = require('inquirer');
 const chalk = require('chalk');
 
+const badges = ["HTML5", ".NET", "javascript", "jQuery", "nodedotjs", "Bootstrap", "CSS3", "github"]
+
 // TODO: Create an array of questions for user input
 const questions = [
     {
