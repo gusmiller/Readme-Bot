@@ -6,20 +6,40 @@
  * Date : 10/8/2023 8:56:08 PM
  * 
  * Description :
- * This file is used to declare the arrays to be use in the 
- * application 
+ * This file is used to declare the arrays to be use in the application 
+ * Questions array of questions to process: Description, Table of Contents,
+ * Installation, Usage, License, Contributing, Tests, and Questions
  */
+const chalk = require('chalk');
 
-// Badges array
-const arrbadges = ["HTML5", ".NET", "javascript", "jQuery", "nodedotjs",
-    "Bootstrap", "CSS3", "github", "NPM"]
+const arrbadges = ["HTML5", ".NET", "javascript", "jQuery", "nodedotjs", "Bootstrap", "CSS3", "github", "NPM"]
+module.exports = arrbadges;
 
-const descriptionfill = ["Lorem Ipsum","Type Description"]
+const descriptionfill = ["Lorem Ipsum", "Type Description"]
+module.exports = descriptionfill;
 
-// Questions array of questions to process.
-// Description, Table of Contents, 
-// Installation, Usage, License, Contributing, Tests, and Questions
+const packagename = [
+    {
+        type: 'input',
+        name: 'productname',
+        message: 'What is the name of your package?',
+        validate(value) {
+            if (value.length == 0) {
+                return chalk.red('You must enter a product name! Press Ctrl-C to cancel');
+            }
+            return true;
+        }
+    }
+]
+module.exports = packagename;
+
 const badgesquestions = [
+    {
+        type: 'confirm',
+        name: 'includeimage',
+        message: 'Would you like to include Carleton image?',
+        default: false
+    },
     {
         type: 'confirm',
         name: 'includebadge',
@@ -40,18 +60,19 @@ const badgesquestions = [
 const description = [
     {
         type: "list",
-        name: "descriptionparr",
+        name: "descmode",
         message: "How you want to enter the description?",
         choices: descriptionfill,
         default: "Lorem Ipsum"
     },
-]
-
-const manualdescription = [
     {
         type: "input",
         name: "descriptionparr",
         message: "Please enter your product description:",
+        when(answers){
+            return answers.includebadge !== "Lorem Ipsum";
+            
+        },
         validate(value) {
             if (value.length == 0) {
                 return chalk.red('You must enter a description for your product! Press Ctrl-C to cancel');
@@ -61,37 +82,10 @@ const manualdescription = [
     }
 ]
 
-const questions = [
-    {
-        type: 'input',
-        name: 'productname',
-        message: 'What is the name of your package?',
-        validate(value) {
-            if (value.length == 0) {
-                return chalk.red('You must enter a product name! Press Ctrl-C to cancel');
-            }
-            return true;
-        }
-    },
-    {
-        type: 'confirm',
-        name: 'includeimage',
-        message: 'Would you like to include Carleton image?',
-        default: false
-    },
-    {
-        type: 'confirm',
-        name: 'includelicense',
-        message: 'Would you like to include license section?',
-        default: true
-    },
+const license = [
     {
         type: 'input',
         name: 'licensetext',
-        message: 'Please enter the license section',
-        when(answers) {
-            return answers.includelicense !== false;
-        }
+        message: 'Please enter the license section'
     }
-
-];
+]

@@ -10,11 +10,9 @@
 const inquirer = require('inquirer');
 const chalk = require('chalk');
 
-import {
-    arrbadges, descriptionfill, badgesquestions,
-    description, manualdescription, questions
-} from './utils/arrays.js';
-import { p1, p2 } from './utils/parragraphs.js'
+const packagename = require('./utils/arrays.js');
+const arrbadges = require('./utils/arrays.js');
+const descriptionfill = require('./utils/arrays.js');
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) { }
@@ -22,10 +20,22 @@ function writeToFile(fileName, data) { }
 /**
  * Initialize arrays and other global requirements to be executed on load.
  */
-function init() {
+const init = () => {
+    inquirer.prompt(packagename)
+        .then((value) => {
+            if (value.productname === "") {
+                return;
+            } else {
+                console.log("test")
+                // clearOrder();
+                // getName();
+            }
+        });
+};
 
-    inquirer
-        .prompt(questions)
+const description = () => {
+
+    inquirer.prompt(questions)
         .then((answers) => {
             console.log(answers);
         })
