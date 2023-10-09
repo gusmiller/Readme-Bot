@@ -9,7 +9,7 @@
  * that have been specified in the requirements. The areas require are as follow:
  *          Description, (done)
  *          Table of Contents,
- *          Installation, 
+ *          Installation, (done)
  *          Usage, 
  *          License, (done)
  *          Contributing,  
@@ -31,16 +31,68 @@ let builder = {
     productname: "",
     projectdescription: "",
     includeimage: false,
-    includelicense: false,
+    tablecontents: true,
+    includelicense: true,
     instructions: "",
-    commandline: "",
-    badgeslist: [],
+    clonecommand: "",
+    npmpackage: "",
+    runcommand: "",
+    badgeslist: []
 };
 
 // TODO: Create a function to write README file
 function writeToFile() {
 
-    let buildfilesrting = "<a id=\"readme-top\" name=\"readme-top\"></a>"; // Instantiate file content
+    let buildfilesrting = "<a id=\"readme-top\" name=\"readme-top\"></a>\n"; // Instantiate file content
+    if (builder.includeimage == true) {
+        buildfilesrting += "<p align=\"center\">\n\t<img src=\"./utils/assets/images/carleton-u-logo.jpg\" height=\"250\">\n</p>"
+    }
+    buildfilesrting += "\n";
+
+    // This seection will build the badges
+    if (builder.badgeslist.length > 0) {
+
+        buildfilesrting += "\n";
+        buildfilesrting += "<p align=\"center\">\n";
+
+        builder.badgeslist.forEach((badge) => {
+            const badgeparts = badge.split("/"); // Badges are split between the label/message and a random color assigned
+            let color = questions.colors[Math.floor(Math.random() * 6)] // Retrieve randon number from 0 to 6
+            buildfilesrting += "\t<a>\n\t\t<img src=\"https://img.shields.io/static/v1.svg?label=" + badgeparts[0] + "&message=" + badgeparts[1] + "&color=" + color + "\"/>\n\t</a>\n";
+        });
+
+        buildfilesrting += "</p\">\n<br/>\n\n";
+
+    } else {
+        buildfilesrting += "\n";
+    }
+
+    buildfilesrting += "# " + builder.productname;
+    buildfilesrting += "\n\n";
+
+    // This section will build the table of contents
+    if (builder.tablecontents == true){
+        buildfilesrting += "<details>\n";
+        buildfilesrting += "\t<summary>Table of Contents</summary>\n";
+        buildfilesrting += "\t<ol>\n";
+
+        buildfilesrting += "\t\t<li><a href=\"#\">Project Description</a></li>\n";
+        buildfilesrting += "\t\t<li><a href=\"#\">Roadmap</a></li>\n";
+        buildfilesrting += "\t\t<li><a href=\"#\">Contributing</a></li>\n";
+        buildfilesrting += "\t\t<li><a href=\"#\">License</a></li>\n";
+        buildfilesrting += "\t\t<li><a href=\"#\">Contact</a></li>\n";
+        buildfilesrting += "\t\t<li><a href=\"#\">Acknowledgments</a></li>\n";
+    
+        buildfilesrting += "\t</ol>\n";
+        buildfilesrting += "</details>\n";
+    }
+
+    buildfilesrting += "<div id=\"Description\"></div>";
+
+    buildfilesrting += "\n";
+    buildfilesrting += "# Description\n";
+    buildfilesrting += "\n" + builder.projectdescription;
+    buildfilesrting += "\n\n";
 
     fs.writeFile('Readme.md', buildfilesrting, (err) =>
         err ? console.error(err) : console.log('Success!')
@@ -77,7 +129,7 @@ const ProjectDescription = () => {
     inquirer.prompt(questions.description)
         .then((answer) => {
             if (answer.loremdata === "Lorem Ipsum") {
-                builder.projectdescription = `Description entered automatically by Lorem Ipsum. ${lorem.p1}\n${lorem.p2}`;
+                builder.projectdescription = `Description entered automatically by Lorem Ipsum. ${lorem.p1}\n\n${lorem.p2}`;
             } else {
                 builder.projectdescription = answer.manualdata;
             }
@@ -95,6 +147,7 @@ const BadgeImages = () => {
     inquirer.prompt(questions.badgesquestions)
         .then((answer) => {
             builder.includeimage = answer.includeimage; // Store wheter image is needed
+            builder.tablecontents = answer.tablecontents; // Store table of contents
             if (answer.includebadge == true) {
                 answer.badgeslist.forEach((badge) => {
                     builder.badgeslist.push(badge); // Store the badges selected
@@ -129,7 +182,9 @@ const AddInstallation = () => {
         .then((answer) => {
             if (answer.includelicense == true) {
                 builder.instructions = answer.instructions // Store instructions 
-                builder.commandline = answer.commandline // Store command line
+                builder.clonecommand = answer.clonecommand // Store Clonning command  
+                builder.npmpackage = answer.npmpackage // Store npm package
+                builder.runcommand = answer.runcommand // Store run command
             }
             writeToFile();
         });
@@ -140,3 +195,4 @@ const AddInstallation = () => {
  * loading
  */
 init();
+//writeToFile();

@@ -12,13 +12,14 @@
  */
 const chalk = require('chalk');
 
-const arrbadges = ["HTML5", ".NET", "javascript", "jQuery", "nodedotjs", "Bootstrap", "CSS3", "github", "NPM"]
+const colors = ["blue","green","red","yellow","purple","cyan"]
+const arrbadges = ["HTML5/Websites", ".NET/Platform", "javascript/Language", "jQuery/Language", "nodejs/Server", "Bootstrap/Styling", "CSS3/Cascade Sheets", "github/Versions"]
 
 const descriptionfill = ["Lorem Ipsum", "Type Description"]
 
 /**
- * This array contains the question to implement the installation instructions, based on what 
- * the user responds it contains two further questions. 
+ * This array contains the instructions to install the application. The question is divided in three different 
+ * sub-questions: How to clone application, how to run the NPM and how to launch the application.
  */
 const installation = [
     {
@@ -30,15 +31,35 @@ const installation = [
     {
         type: 'input',
         name: 'instructions',
-        message: 'Please enter the instructions:',
+        message: chalk.green('Please enter the instructions:'),
+        default: 'Please follow the instructions to install the Readme-bot CLI application',
         when(answers) {
             return answers.includeinstalation !== false;
         }
     },
     {
         type: 'input',
-        name: 'commandline',
-        message: chalk.yellow('Please enter the command line (this will be displayed as code):'),
+        name: 'clonecommand',
+        message: chalk.yellow('Please enter the cloning github repo (this will be displayed as code):'),
+        default: 'git clone http://github.com/gusmiller/readme-bot',
+        when(answers) {
+            return answers.instructions !== null;
+        }
+    },
+    {
+        type: 'input',
+        name: 'npmpackage',
+        message: chalk.yellow('Please enter the NPM initialize command (this will be displayed as code):'),
+        default: 'npm install',
+        when(answers) {
+            return answers.instructions !== null;
+        }
+    },
+    {
+        type: 'input',
+        name: 'runcommand',
+        message: chalk.yellow('Please enter the command to launch the application (this will be displayed as code):'),
+        default: 'node index.js',
         when(answers) {
             return answers.instructions !== null;
         }
@@ -53,7 +74,8 @@ const packagename = [
     {
         type: 'input',
         name: 'productname',
-        message: 'What is the name of your package?',
+        message: chalk.blue('What is the name of your package?'),
+        default: 'Carlton Coding Bootcamp Certification',
         validate(value) {
             if (value.length == 0) {
                 return chalk.red('You must enter a product name! Press Ctrl-C to cancel');
@@ -65,20 +87,26 @@ const packagename = [
 
 /**
  * This array contains the questions related to stetics of the Readme file. It will prompt user for
- * a confirmation for an image and badges. These are optional to the project but are important for my
- * personal liking of a readme file.
+ * a confirmation for an image, table of contents and badges. These are optional to the project but are
+ * important for my personal liking of a readme file.
  */
 const badgesquestions = [
     {
         type: 'confirm',
         name: 'includeimage',
-        message: 'Would you like to include Carleton image?',
+        message: chalk.green('Would you like to include Carleton image?'),
         default: false
     },
     {
         type: 'confirm',
+        name: 'tablecontents',
+        message: chalk.green('Would you like to include Table of Contents? (It will be created based on your selections)'),
+        default: true
+    },
+    {
+        type: 'confirm',
         name: 'includebadge',
-        message: 'Would you like to include badges?',
+        message: chalk.green('Would you like to include badges?'),
         default: false
     },
     {
@@ -137,4 +165,4 @@ const license = [
     }
 ]
 
-module.exports = { arrbadges, descriptionfill, packagename, badgesquestions, description, license, installation };
+module.exports = { arrbadges, descriptionfill, packagename, badgesquestions, description, license, installation, colors };
