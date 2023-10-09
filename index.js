@@ -7,18 +7,45 @@
  */
 
 // TODO: Include packages needed for this application
+const inquirer = require('inquirer');
+const chalk = require('chalk');
 
-// TODO: Create an array of questions for user input
-const questions = [];
+const packagename = require('./utils/arrays.js');
+const arrbadges = require('./utils/arrays.js');
+const descriptionfill = require('./utils/arrays.js');
 
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
+function writeToFile(fileName, data) { }
 
 /**
  * Initialize arrays and other global requirements to be executed on load.
  */
-function init() {
-      
+const init = () => {
+    inquirer.prompt(packagename)
+        .then((value) => {
+            if (value.productname === "") {
+                return;
+            } else {
+                console.log("test")
+                // clearOrder();
+                // getName();
+            }
+        });
+};
+
+const description = () => {
+
+    inquirer.prompt(questions)
+        .then((answers) => {
+            console.log(answers);
+        })
+        .catch((error) => {
+            if (error.isTtyError) {
+                // Prompt couldn't be rendered in the current environment
+            } else {
+                // Something else went wrong
+            }
+        });
 }
 
 /**

@@ -1,10 +1,10 @@
 {
   "name": "readme-bot",
   "version": "1.0.1",
-  "description": "This node script application will generate the Readme file.",
+  "description": "This node script application will generate the Readme file. This is part of my assignment at Carleton Coding Bootcamp",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -19,5 +19,10 @@
   "bugs": {
     "url": "https://github.com/gusmiller/Readme-Bot/issues"
   },
-  "homepage": "https://github.com/gusmiller/Readme-Bot#readme"
+  "homepage": "https://github.com/gusmiller/Readme-Bot#readme",
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "email-validator": "^2.0.4",
+    "inquirer": "^8.2.4"
+  }
 }
