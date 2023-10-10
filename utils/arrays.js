@@ -201,4 +201,36 @@ const license = [
     }
 ]
 
-module.exports = { arrbadges, descriptionfill, packagename, badgesquestions, description, license, installation, colors, appusage };
+/**
+ * This array contains the questions related to the Contact section. This was optiona from my part
+ * but I intent to use this CLI application to create my Readme documents for future assignments and 
+ * project I may have.
+ */
+const contactme = [
+    {
+        type: 'confirm',
+        name: 'includecontact',
+        message: chalk.blue('Do you want to include a Contact me Section?'),
+        default: true
+    },
+    {
+        type: "input",
+        name: "contactdata",
+        message: chalk.blue('Please enter your Contact information?'),
+        default: "Gustavo Miller - gustavo.miller@miller-hs.com",
+        when(answer) {
+            return answer.includecontact === true;
+        }
+    },
+    {
+        type: "input",
+        name: "contactproject",
+        message: chalk.blue('Please enter your GitHub Repository address?'),
+        default: "[Project Readme-bot](https://github.com/gusmiller/Readme-Bot)",
+        when(answer) {
+            return answer.includecontact === true;
+        }
+    }
+]
+
+module.exports = { arrbadges, descriptionfill, packagename, badgesquestions, description, license, installation, colors, appusage, contactme };

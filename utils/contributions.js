@@ -38,7 +38,8 @@ const question = [
                         return chalk.red('You must enter your contribution parragraph! Press Ctrl-C to cancel');
                   }
                   return true;
-            }
+            },
+            waitUserInput: true
       }
 ];
 
