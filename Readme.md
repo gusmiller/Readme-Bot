@@ -13,12 +13,12 @@
 		<li><a href="#installation">Installation</a></li>
 		<li><a href="#license">License</a></li>
 		<li><a href="#usage">Application Usage</a></li>
-		<li><a href="#">Acknowledgments</a></li>
+		<li><a href="#contribution">Contributions</a></li>
 	</ol>
 </details>
 <div id="Description" style="margin-top: 25px;">
 
-# Description
+## Description
 
 Description entered automatically by Lorem Ipsum. Aut, nobis quod earum, dolores accusamus modi libero possimus nam et aliquam non, blanditiis saepe. quod earum, dolores accusamus modi libero possimus nam et. Aut, nobis quod earum, dolores accusamus modi libero possimus nam et aliquam non, blanditiis saepe. quod earum, dolores accusamus modi libero possimus nam et.
 
@@ -35,7 +35,7 @@ Here is my product!
 
 <div id="installation" style="margin-bottom: 20px;margin-top: 20px;">
 
-# Installation
+## Installation
 
 Please follow the instructions to install the Readme-bot CLI application
 
@@ -87,7 +87,11 @@ Application usage entered automatically by Lorem Ipsum. Lorem ipsum dolor, sit a
 
 ## Contributing 
 
-[object Object]
+Contributions to this application are welcome! Being part of an open source community is what makes software so amazingly fun. Your contributions will be considered and **much appreciated**.
+
+We are open to any suggestions that would make this application better and more stable. You know the process: fork the contents of my repo and create a pull request when you are done!
+
+Don't forget to give the project a star! Thanks again!
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
