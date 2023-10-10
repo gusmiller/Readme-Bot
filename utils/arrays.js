@@ -70,7 +70,7 @@ const installation = [
         message: chalk.green('Please enter the instructions:'),
         default: 'Please follow the instructions to install the Readme-bot CLI application',
         when(answers) {
-            return answers.includeinstalation !== false;
+            return answers.includeinstalation === true;
         }
     },
     {
@@ -79,7 +79,7 @@ const installation = [
         message: chalk.yellow('Please enter the cloning github repo (this will be displayed as code):'),
         default: 'git clone http://github.com/gusmiller/readme-bot',
         when(answers) {
-            return answers.instructions !== null;
+            return answers.includeinstalation === true;
         }
     },
     {
@@ -88,7 +88,7 @@ const installation = [
         message: chalk.yellow('Please enter the NPM initialize command (this will be displayed as code):'),
         default: 'npm install',
         when(answers) {
-            return answers.instructions !== null;
+            return answers.includeinstalation === true;
         }
     },
     {
@@ -97,7 +97,7 @@ const installation = [
         message: chalk.yellow('Please enter the command to launch the application (this will be displayed as code):'),
         default: 'node index.js',
         when(answers) {
-            return answers.instructions !== null;
+            return answers.includeinstalation === true;
         }
     }
 ]

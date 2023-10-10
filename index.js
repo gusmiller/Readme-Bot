@@ -158,8 +158,8 @@ const AddLicenseSection = () => {
 const AddInstallation = () => {
     inquirer.prompt(questions.installation)
         .then((answer) => {
-            builder.includeinstallation = answer.includeinstalation;
-            if (answer.includeinstalation == true) {
+            builder.includeinstallation = answer.includeinstalation; // Include or not Installation
+            if (builder.includeinstallation === true) {
                 builder.instructions = answer.instructions // Store instructions 
                 builder.clonecommand = answer.clonecommand // Store Clonning command  
                 builder.npmpackage = answer.npmpackage // Store npm package
