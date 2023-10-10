@@ -15,7 +15,43 @@ const chalk = require('chalk');
 const colors = ["blue","green","red","yellow","purple","cyan"]
 const arrbadges = ["HTML5/Websites", ".NET/Platform", "javascript/Language", "jQuery/Language", "nodejs/Server", "Bootstrap/Styling", "CSS3/Cascade Sheets", "github/Versions"]
 
-const descriptionfill = ["Lorem Ipsum", "Type Description"]
+const descriptionfill = ["Lorem Ipsum", "Free-Typing"]
+
+/**
+ * This array contains the instructions to add the application usage. User has the choice to manually enter
+ * the information or allow the application to generate a random parragraph that will allow file to be created
+ * with pseudo-data.
+ */
+const appusage = [
+    {
+        type: 'confirm',
+        name: 'applicationusage',
+        message: chalk.magenta('Would you like to include Application Usage Section?'),
+        default: true
+    },
+    {
+        type: "list",
+        name: "loremusage",
+        message: chalk.magenta("How you want to enter the Usage Information?"),
+        choices: descriptionfill,
+        default: "Lorem Ipsum"
+    },
+    {
+        type: "input",
+        name: "customusage",
+        message: chalk.magenta("Please enter Application usage information:"),
+        when(answer) {
+            return answer.loremusage !== "Lorem Ipsum";
+        },
+        validate(answer) {
+            if (answer.length == 0) {
+                return chalk.red('You must provide an explanation to the usage of the application! Press Ctrl-C to cancel');
+            }
+            return true;
+        }
+    }
+
+]
 
 /**
  * This array contains the instructions to install the application. The question is divided in three different 
@@ -95,7 +131,7 @@ const badgesquestions = [
         type: 'confirm',
         name: 'includeimage',
         message: chalk.green('Would you like to include Carleton image?'),
-        default: false
+        default: true
     },
     {
         type: 'confirm',
@@ -165,4 +201,4 @@ const license = [
     }
 ]
 
-module.exports = { arrbadges, descriptionfill, packagename, badgesquestions, description, license, installation, colors };
+module.exports = { arrbadges, descriptionfill, packagename, badgesquestions, description, license, installation, colors, appusage };
