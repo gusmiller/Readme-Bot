@@ -8,7 +8,7 @@
  * Description :
  * This file is used to declare the arrays to be use in the application 
  * Questions array of questions to process: Description, Table of Contents,
- * Installation, Usage, License, Contributing, Tests, and Questions
+ * Installation, Usage, License, Contributing, Tests, Questions and others
  */
 const chalk = require('chalk');
 
@@ -34,14 +34,17 @@ const appusage = [
         name: "loremusage",
         message: chalk.magenta("How you want to enter the Usage Information?"),
         choices: descriptionfill,
-        default: "Lorem Ipsum"
+        default: "Lorem Ipsum",
+        when(answer){
+            return answer.applicationusage === true; // Ask only when required
+        }
     },
     {
         type: "input",
         name: "customusage",
         message: chalk.magenta("Please enter Application usage information:"),
         when(answer) {
-            return answer.loremusage !== "Lorem Ipsum";
+            return answer.applicationusage === true && answer.loremusage !== "Lorem Ipsum"; // Ask only when required
         },
         validate(answer) {
             if (answer.length == 0) {

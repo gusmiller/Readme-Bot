@@ -18,7 +18,6 @@
 
 // Include packages needed for this application
 const inquirer = require('inquirer');
-const chalk = require('chalk');
 
 // fs is a Node standard library package for reading and writing files
 const fs = require('fs');
@@ -34,6 +33,7 @@ let buildfilesrting = "";
 let builder = {
     productname: "",
     projectdescription: "",
+    includeusage: false,
     applicationusage: "",
     contributions: false,
     contributiondata: "",
@@ -42,13 +42,17 @@ let builder = {
     includelicense: true,
     includeinstallation: false,
     instructions: "",
+    contactdata: "",
+    contactproject: "",
     clonecommand: "",
     npmpackage: "",
     runcommand: "",
     badgeslist: []
 };
 
-// TODO: Create a function to write README file
+/**
+ * This function is the one that generates the readme file.
+ */
 function writeToFile() {
 
     buildfilesrting = "<a id=\"readme-top\" name=\"readme-top\"></a>" + sp; // Instantiate file content
@@ -68,7 +72,7 @@ function writeToFile() {
     CommonSection("license", "License", license.license) // Build the License section
     CommonSection("usage", "Application Usage", builder.applicationusage) // Build the application usage section
     CommonSection("contribution", "Contributing ", builder.contributiondata) // Build the application usage section
-    CommonSection("contactme", "Contact Me ", builder.contactdata + sp + builder.contactproject ) // Build the application usage section
+    CommonSection("contactme", "Contact Me ", builder.contactdata + sp + builder.contactproject) // Build the application usage section
 
     buildfilesrting += "---\n© 2023 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved. Developed by Gustavo Miller";
 
@@ -176,6 +180,7 @@ const AddInstallation = () => {
 const ApplicationUsage = () => {
     inquirer.prompt(questions.appusage)
         .then((answer) => {
+            answer.includeusage = answer.applicationusage;
             if (answer.loremusage === "Lorem Ipsum") {
                 builder.applicationusage = `Application usage entered automatically by Lorem Ipsum. ${lorem.p2}`;
             } else {
@@ -247,16 +252,16 @@ function BuildTableContent() {
         if (builder.instructions.length > 0) {
             buildfilesrting += "\t\t<li><a href=\"#installation\">Installation</a></li>\n";
         }
-        if (builder.includelicense == true) {
+        if (builder.includelicense === true) {
             buildfilesrting += "\t\t<li><a href=\"#license\">License</a></li>\n";
         }
-        if (builder.applicationusage.length > 0) {
+        if (builder.includeusage === true) {
             buildfilesrting += "\t\t<li><a href=\"#usage\">Application Usage</a></li>\n";
         }
-        if (builder.contributions == true) {
+        if (builder.contributions === true) {
             buildfilesrting += "\t\t<li><a href=\"#contribution\">Contributions</a></li>\n"
         };
-        if (builder.includecontact == true) {
+        if (builder.includecontact === true) {
             buildfilesrting += "\t\t<li><a href=\"#contactme\">Contact Me!</a></li>\n"
         };
 
@@ -270,24 +275,27 @@ function BuildTableContent() {
  * are available globaly so there is no need to pass parameters nor declare new working 
  */
 function BuildInstallationSection() {
-    // This section creates the installation area
-    buildfilesrting += "<div id=\"installation\" style=\"margin-bottom: 20px;margin-top: 20px;\">" + sp;
-    buildfilesrting += "## Installation" + sp;
-    buildfilesrting += builder.instructions + sp;
-    buildfilesrting += "1. Clone the Readme-bot repository\n";
-    buildfilesrting += "\t```js\n";
-    buildfilesrting += "\t" + builder.clonecommand + "\n";
-    buildfilesrting += "\t```\n";
-    buildfilesrting += "2. Install NPM Packaged\n";
-    buildfilesrting += "\t```js\n";
-    buildfilesrting += "\t" + builder.npmpackage + "\n";
-    buildfilesrting += "\t```\n";
-    buildfilesrting += "3. Run CLI application\n";
-    buildfilesrting += "\t```js\n";
-    buildfilesrting += "\t" + builder.runcommand + "\n";
-    buildfilesrting += "\t```\n";
-    buildfilesrting += "</div>" + sp;
-    buildfilesrting += "<p align=\"right\">(<a href=\"#readme-top\">back to top</a>)</p>" + sp
+
+    if (builder.includeinstallation == true) {
+
+        buildfilesrting += "<div id=\"installation\" style=\"margin-bottom: 20px;margin-top: 20px;\">" + sp;
+        buildfilesrting += "## Installation" + sp;
+        buildfilesrting += builder.instructions + sp;
+        buildfilesrting += "1. Clone the Readme-bot repository\n";
+        buildfilesrting += "\t```js\n";
+        buildfilesrting += "\t" + builder.clonecommand + "\n";
+        buildfilesrting += "\t```\n";
+        buildfilesrting += "2. Install NPM Packaged\n";
+        buildfilesrting += "\t```js\n";
+        buildfilesrting += "\t" + builder.npmpackage + "\n";
+        buildfilesrting += "\t```\n";
+        buildfilesrting += "3. Run CLI application\n";
+        buildfilesrting += "\t```js\n";
+        buildfilesrting += "\t" + builder.runcommand + "\n";
+        buildfilesrting += "\t```\n";
+        buildfilesrting += "</div>" + sp;
+        buildfilesrting += "<p align=\"right\">(<a href=\"#readme-top\">back to top</a>)</p>" + sp
+    }
 }
 
 /**
@@ -331,7 +339,7 @@ function BuildBadgesSection() {
  * declare new working
  */
 function CommonSection(idname, title, data) {
-    if (builder.applicationusage.length > 0) {
+    if (data.length > 0) {
         buildfilesrting += "<div id=\"" + idname + "\" style=\"margin-top: 25px;\">" + sp;
         buildfilesrting += "## " + title + sp;
         buildfilesrting += data + sp;
@@ -345,4 +353,3 @@ function CommonSection(idname, title, data) {
  * loading
  */
 init();
-//writeToFile();

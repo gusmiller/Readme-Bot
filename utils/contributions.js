@@ -24,14 +24,17 @@ const question = [
             name: "loremcontribution",
             message: chalk.greenBright("How would you like to create your contribution? By.."),
             choices: parragraphoptions,
-            default: "Standard Text"
+            default: "Standard Text",
+            when(answer){
+                  return answer.contributions === true;
+            }
       },
       {
             type: "editor",
             name: "manualcontribution",
             message: "Please enter your contribution content (you may use Markdown markup):",
             when(answer) {
-                  return answer.loremcontribution === "Free-Typing";
+                  return answer.contributions === true && answer.loremcontribution === "Free-Typing";
             },
             validate(answer) {
                   if (answer.length == 0) {
