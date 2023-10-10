@@ -70,7 +70,6 @@ function writeToFile() {
     CommonSection("contribution", "Contributing ", builder.contributiondata) // Build the application usage section
     CommonSection("contactme", "Contact Me ", builder.contactdata + sp + builder.contactproject ) // Build the application usage section
 
-    buildfilesrting += sp;
     buildfilesrting += "---\n© 2023 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved. Developed by Gustavo Miller";
 
     fs.writeFile('Readme.md', buildfilesrting, (err) =>
@@ -214,7 +213,7 @@ const ContributionSection = () => {
  * This will ask about the Contact Me section usage. This create the final section of the Readme file 
  */
 const ContactMeSection = () => {
-    inquirer.prompt(contribution.contactme)
+    inquirer.prompt(questions.contactme)
         .then((answer) => {
             if (answer.includecontact == true) {
 
@@ -336,22 +335,6 @@ function CommonSection(idname, title, data) {
         buildfilesrting += "<div id=\"" + idname + "\" style=\"margin-top: 25px;\">" + sp;
         buildfilesrting += "## " + title + sp;
         buildfilesrting += data + sp;
-        buildfilesrting += "<p align=\"right\">(<a href=\"#readme-top\">back to top</a>)</p>" + sp
-        buildfilesrting += "</div>" + sp;
-    }
-}
-
-/**
- * This function will generate a section that is common and only contains static information. 
- * It uses variablea which are available globaly so there is no need to pass parameters nor 
- * declare new working
- */
-function ContactMeSection() {
-    if (builder.ContactMeSection == true) {
-        buildfilesrting += "<div id=\"contactme\" style=\"margin-top: 25px;\">" + sp;
-        buildfilesrting += "## Contact Me!" + sp;
-        buildfilesrting += builder.contactdata + sp;
-        buildfilesrting += builder.contactproject + sp;
         buildfilesrting += "<p align=\"right\">(<a href=\"#readme-top\">back to top</a>)</p>" + sp
         buildfilesrting += "</div>" + sp;
     }
