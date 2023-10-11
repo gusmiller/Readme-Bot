@@ -27,7 +27,7 @@ const appusage = [
         type: 'confirm',
         name: 'applicationusage',
         message: chalk.magenta('Would you like to include Application Usage Section?'),
-        default: true
+        default: false
     },
     {
         type: "list",
@@ -65,7 +65,7 @@ const installation = [
         type: 'confirm',
         name: 'includeinstalation',
         message: 'Would you like to include the Installation Section?',
-        default: true
+        default: false
     },
     {
         type: 'input',
@@ -200,7 +200,7 @@ const license = [
         type: 'confirm',
         name: 'includelicense',
         message: 'Do you want to include an MIT license?',
-        default: true
+        default: false
     }
 ]
 
@@ -214,7 +214,7 @@ const contactme = [
         type: 'confirm',
         name: 'includecontact',
         message: chalk.blue('Do you want to include a Contact me Section?'),
-        default: true
+        default: false
     },
     {
         type: "input",

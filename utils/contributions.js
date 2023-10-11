@@ -18,7 +18,7 @@ const question = [
             type: 'confirm',
             name: 'contributions',
             message: chalk.greenBright('Would you like to include a Contribution Section?'),
-            default: true
+            default: false
       }, {
             type: "list",
             name: "loremcontribution",

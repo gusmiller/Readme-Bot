@@ -18,7 +18,7 @@ const questions = [
             type: 'confirm',
             name: 'confirmation',
             message: chalk.cyan('Would you like to include a Testing Section?'),
-            default: true
+            default: false
       }, {
             type: "list",
             name: "typetext",
