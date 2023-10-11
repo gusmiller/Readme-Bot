@@ -33,20 +33,20 @@ let buildfilesrting = "";
 let builder = {
     productname: "",
     projectdescription: "",
-    includeusage: false,
     applicationusage: "",
-    contributions: false,
-    contributiondata: "",
-    includeimage: false,
-    tablecontents: true,
-    includelicense: true,
-    includeinstallation: false,
     instructions: "",
     contactdata: "",
     contactproject: "",
     clonecommand: "",
     npmpackage: "",
     runcommand: "",
+    includeusage: false,
+    includecontributions: false,
+    contributiondata: "",
+    includeimage: false,
+    tablecontents: false,
+    includelicense: false,
+    includeinstallation: false,
     badgeslist: []
 };
 
@@ -69,10 +69,10 @@ function writeToFile() {
     BuildTableContent(); // Build the table of contents
     BuildDescription(); // Build the description section
     BuildInstallationSection(); // Build the Installation section
-    CommonSection("license", "License", license.license) // Build the License section
-    CommonSection("usage", "Application Usage", builder.applicationusage) // Build the application usage section
-    CommonSection("contribution", "Contributing ", builder.contributiondata) // Build the application usage section
-    CommonSection("contactme", "Contact Me ", builder.contactdata + sp + builder.contactproject) // Build the application usage section
+    CommonSection("license", "License", license.license, builder.includelicense) // Build the License section
+    CommonSection("usage", "Application Usage", builder.applicationusage, builder.includeusage) // Build the application usage section
+    CommonSection("contribution", "Contributing ", builder.contributiondata, builder.includecontributions) // Build the application usage section
+    CommonSection("contactme", "Contact Me ", builder.contactdata + sp + builder.contactproject, builder.includecontact) // Build the application usage section
 
     buildfilesrting += "---\n© 2023 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved. Developed by Gustavo Miller";
 
@@ -180,7 +180,10 @@ const AddInstallation = () => {
 const ApplicationUsage = () => {
     inquirer.prompt(questions.appusage)
         .then((answer) => {
-            answer.includeusage = answer.applicationusage;
+
+            builder.includeusage = answer.applicationusage; // Conditional for usage section
+            builder.applicationusage = ""; // Make sure is not undefined
+
             if (answer.loremusage === "Lorem Ipsum") {
                 builder.applicationusage = `Application usage entered automatically by Lorem Ipsum. ${lorem.p2}`;
             } else {
@@ -200,7 +203,7 @@ const ContributionSection = () => {
         .then((answer) => {
             if (answer.contributions == true) {
 
-                builder.contributions = true;
+                builder.includecontributions = true;
 
                 if (answer.loremcontribution === "Lorem Ipsum") {
                     builder.contributiondata = contribution.paragraphdata[0].lorem;
@@ -258,7 +261,7 @@ function BuildTableContent() {
         if (builder.includeusage === true) {
             buildfilesrting += "\t\t<li><a href=\"#usage\">Application Usage</a></li>\n";
         }
-        if (builder.contributions === true) {
+        if (builder.includecontributions === true) {
             buildfilesrting += "\t\t<li><a href=\"#contribution\">Contributions</a></li>\n"
         };
         if (builder.includecontact === true) {
@@ -338,8 +341,8 @@ function BuildBadgesSection() {
  * It uses variablea which are available globaly so there is no need to pass parameters nor 
  * declare new working
  */
-function CommonSection(idname, title, data) {
-    if (data.length > 0) {
+function CommonSection(idname, title, data, includesection) {
+    if (includesection === true) {
         buildfilesrting += "<div id=\"" + idname + "\" style=\"margin-top: 25px;\">" + sp;
         buildfilesrting += "## " + title + sp;
         buildfilesrting += data + sp;
