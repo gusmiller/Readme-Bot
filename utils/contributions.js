@@ -38,7 +38,7 @@ const question = [
             },
             validate(answer) {
                   if (answer.length == 0) {
-                        return chalk.red('You must enter your contribution parragraph! Press Ctrl-C to cancel');
+                        return chalk.red('You must enter a context! Press Ctrl-C to cancel');
                   }
                   return true;
             },

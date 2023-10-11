@@ -12,7 +12,7 @@
  */
 const chalk = require('chalk');
 
-const colors = ["blue","green","red","yellow","purple","cyan"]
+const colors = ["blue", "green", "red", "yellow", "purple", "cyan"]
 const arrbadges = ["HTML5/Websites", ".NET/Platform", "javascript/Language", "jQuery/Language", "nodejs/Server", "Bootstrap/Styling", "CSS3/Cascade Sheets", "github/Versions"]
 
 const descriptionfill = ["Lorem Ipsum", "Free-Typing"]
@@ -35,7 +35,7 @@ const appusage = [
         message: chalk.magenta("How you want to enter the Usage Information?"),
         choices: descriptionfill,
         default: "Lorem Ipsum",
-        when(answer){
+        when(answer) {
             return answer.applicationusage === true; // Ask only when required
         }
     },
