@@ -22,7 +22,6 @@
   "homepage": "https://github.com/gusmiller/Readme-Bot#readme",
   "dependencies": {
     "chalk": "^4.1.2",
-    "email-validator": "^2.0.4",
     "inquirer": "^8.2.4"
   }
 }
