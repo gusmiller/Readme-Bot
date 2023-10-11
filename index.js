@@ -65,7 +65,6 @@ function writeToFile() {
 
     BuildBadgesSection() // This will build the badges section
 
-    buildfilesrting += sp;
     buildfilesrting += "# " + builder.productname;
     buildfilesrting += sp;
 
@@ -76,6 +75,7 @@ function writeToFile() {
     CommonSection("usage", "Application Usage", builder.applicationusage, builder.includeusage) // Build the application usage section
     CommonSection("contribution", "Contributing ", builder.contributiondata, builder.includecontributions) // Build the application usage section
     CommonSection("contactme", "Contact Me ", builder.contactdata + sp + builder.contactproject, builder.includecontact) // Build the application usage section
+    CommonSection("testing", "Testing Application ", builder.testingformation, builder.includetesting) // Build the testing section
 
     buildfilesrting += "---\n© 2023 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved. Developed by Gustavo Miller";
 
@@ -297,6 +297,9 @@ function BuildTableContent() {
         if (builder.includecontact === true) {
             buildfilesrting += "\t\t<li><a href=\"#contactme\">Contact Me!</a></li>\n"
         };
+        if(builder.includetesting === true) {
+            buildfilesrting += "\t\t<li><a href=\"#testing\">Testing Application</a></li>\n"
+        };
 
         buildfilesrting += "\t</ol>\n";
         buildfilesrting += "</details>\n";
@@ -349,7 +352,8 @@ function BuildDescription() {
 
 /**
  * This function will generate the badges section. It uses variablea which are available 
- * globaly so there is no need to pass parameters nor declare new working
+ * globaly so there is no need to pass parameters nor declare new working. Notice that if we are implementing
+ * a badges section then add the two lines after.
  */
 function BuildBadgesSection() {
     if (builder.badgeslist.length > 0) {

@@ -70,7 +70,7 @@ const installation = [
     {
         type: 'input',
         name: 'instructions',
-        message: chalk.green('Please enter the instructions:'),
+        message: chalk.yellow('Please enter the instructions:'),
         default: 'Please follow the instructions to install the Readme-bot CLI application',
         when(answers) {
             return answers.includeinstalation === true;
