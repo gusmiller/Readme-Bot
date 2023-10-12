@@ -79,7 +79,7 @@ function writeToFile() {
 
     buildfilesrting += "---\n© 2023 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved. Developed by Gustavo Miller";
 
-    fs.writeFile('Readme.md', buildfilesrting, (err) =>
+    fs.writeFile('README.md', buildfilesrting, (err) =>
         err ? console.error(err) : console.log('Success!')
     );
 
@@ -92,6 +92,18 @@ function writeToFile() {
  * We start with the product name.
  */
 const init = () => {
+
+    const readmefile = "README.md";
+
+    // Validate whether file exists or not
+    if (fs.existsSync(readmefile)) {
+
+        fs.unlink(readmefile, (err) => {
+            if (err) {
+                console.error(`Error deleting file: ${err}`);
+            }
+        });
+    }
 
     inquirer.prompt(questions.packagename)
         .then((answer) => {
@@ -261,6 +273,7 @@ const TestingApplication = () => {
 
             }
             writeToFile(); // Proceed to writting the file
+            AssertChanges(); // Hack to persist changes to file
         });
 }
 
@@ -297,7 +310,7 @@ function BuildTableContent() {
         if (builder.includecontact === true) {
             buildfilesrting += "\t\t<li><a href=\"#contactme\">Contact Me!</a></li>\n"
         };
-        if(builder.includetesting === true) {
+        if (builder.includetesting === true) {
             buildfilesrting += "\t\t<li><a href=\"#testing\">Testing Application</a></li>\n"
         };
 
@@ -383,6 +396,16 @@ function CommonSection(idname, title, data, includesection) {
         buildfilesrting += "<p align=\"right\">(<a href=\"#readme-top\">back to top</a>)</p>" + sp
         buildfilesrting += "</div>" + sp;
     }
+}
+
+function AssertChanges() {
+    fs.appendFile("README.md", ' ', (err) => {
+        if (err) {
+            console.error(`Error appending space to the file: ${err}`);
+        } else {
+            console.log('Space appended to the file successfully');
+        }
+    });
 }
 
 /**
