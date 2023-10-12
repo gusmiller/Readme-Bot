@@ -27,6 +27,7 @@ const questions = require('./utils/arrays.js');
 const lorem = require('./utils/parragraphs.js');
 const license = require('./utils/license.js');
 const testapps = require('./utils/testingapps.js');
+
 const sp = "\n\n";
 
 let buildfilesrting = "";
@@ -59,8 +60,7 @@ let builder = {
  */
 function writeToFile() {
 
-    // Import from the contact data the large parragraph with all the questions included
-    let contactoutput = require('./utils/contactdata.js');
+    let data = `The purpose of this Readme-bot is to help developers create their project Readme.md file that is required for ALL projects. Over time this application can save the developer lots of time, as this is a tedious process. The Readme-bot can be enhanced and there is growth for much more.\n\nDo not hesitate in contacting me, ${builder.contactdata}.\n\nYou may find the application at: [Project Readme-bot](${builder.contactproject})\n\nThe current application contains the following questions:\n\n- What is the name of your package?\n- How you want to enter the description?\n- Would you like to include Carleton image?\n- Would you like to include Table of Contents?\n- Would you like to include badges?\n- Please select the badges you like to include HTML5/Websites, .NET/Platform, javascript/Language, jQuery/Language\n- Do you want to include an MIT license?\n- Would you like to include the Installation Section?\n- Please enter the instructions: **Please follow the instructions to install the Readme-bot CLI application**\n- Please enter the cloning github repo (this will be displayed as code): **git clone {repository}**\n- Please enter the NPM initialize command (this will be displayed as code): **npm install**\n- Please enter the command to launch the application (this will be displayed as code): **node index.js**\n- Would you like to include Application Usage Section?\n- How you want to enter the Usage Information? - **Lorem Ipsum or Free-Typing**\n- Would you like to include a Contribution Section?\n- How would you like to create your contribution? By.. **Lorem Ipsum, Standard Text or Free-Typing**\n- Do you want to include a Contact me and Questions Section?\n- Please enter your Contact information?\n- Please enter your GitHub Repository address?\n- Would you like to include a Testing Section?\n- How would you like to create the Testing content? By.. **Lorem Ipsum, Standard Text or Free-Typing**\n`
 
     buildfilesrting = "<a id=\"readme-top\" name=\"readme-top\"></a>" + sp; // Instantiate file content
     if (builder.includeimage == true) {
@@ -75,10 +75,10 @@ function writeToFile() {
     BuildTableContent(); // Build the table of contents
     BuildDescription(); // Build the description section
     BuildInstallationSection(); // Build the Installation section
-    CommonSection("license", "License", license.license, builder.includelicense) // Build the License section
+    buildMIT("license", "License", license.license, builder.includelicense) // Build MIT license
     CommonSection("usage", "Application Usage", builder.applicationusage, builder.includeusage) // Build the application usage section
     CommonSection("contribution", "Contributing ", builder.contributiondata, builder.includecontributions) // Build the application usage section
-    CommonSection("contactme", "Questions? Contact Me ", contactoutput.content(builder.contactdata,builder.contactproject), builder.includecontact) // Contact / Questions
+    CommonSection("contactme", "Questions? Contact Me ", data, builder.includecontact) // Contact / Questions
     CommonSection("testing", "Testing Application ", builder.testingformation, builder.includetesting) // Build the testing section
 
     buildfilesrting += "---\n© 2023 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved. Developed by Gustavo Miller";
@@ -417,6 +417,28 @@ function CommonSection(idname, title, data, includesection) {
     }
 }
 
+/**
+ * This function will generate the MIT section it is based on the common but it includes a badge
+ * It uses variablea which are available globaly so there is no need to pass parameters nor 
+ * declare new working
+ */
+function buildMIT(idname, title, data, includesection) {
+    if (includesection === true) {
+        buildfilesrting += "<div id=\"" + idname + "\" style=\"margin-top: 25px;\">" + sp;
+        buildfilesrting += "## " + title + sp;        
+        buildfilesrting += data + sp;
+        buildfilesrting += "<a><img src=\"https://img.shields.io/static/v1.svg?label=License&message=MIT&color=yellow\"/></a>" + sp;
+        buildfilesrting += "<p align=\"right\">(<a href=\"#readme-top\">back to top</a>)</p>" + sp
+        buildfilesrting += "</div>" + sp;
+    }
+}
+
+/**
+ * This is a fix for a problem I encountered. When creating multiple times the Readme.md file the previewer will load
+ * a cached version not reflecting the changes made to the Readme.md file. This might be a bug, but this ensures the 
+ * file is touched before completion. Last file would be the created prior to this last action. This should not happens
+ * unless file is created many many times.
+ */
 function AssertChanges() {
     fs.appendFile("README.md", '.', (e, data) => {
         if (e) {
