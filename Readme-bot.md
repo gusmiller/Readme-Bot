@@ -23,7 +23,6 @@
 		<li><a href="#usage">Application Usage</a></li>
 		<li><a href="#contribution">Contributions</a></li>
 		<li><a href="#contactme">Questions? Contact Me!</a></li>
-		<li><a href="#testing">Testing Application</a></li>
 	</ol>
 </details>
 <div id="Description" style="margin-top: 25px;">
@@ -168,26 +167,6 @@ The current application contains the following questions:
 - Please enter your GitHub Repository address?
 - Would you like to include a Testing Section?
 - How would you like to create the Testing content? By.. **Lorem Ipsum, Standard Text or Free-Typing**
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-</div>
-
-<div id="testing" style="margin-top: 25px;">
-
-## Testing Application 
-
-Testing the Readme-bot application is very important. We want to make sure we have all the sections tested and that our Readme file is being created correctly. You can enter the following sections in the readme-bot application:
-
-	1.Provide the Application Name
-	2.Application Description.
-	3.Provide Badges (optional)
-	4.Application License (optional).
-	5.Installation Process (optional).
-	6.Application Usage (optional).
-	7.Contributions Section (optional).
-	8.Contact section (optional).
-	9.Testing Application (optional).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
