@@ -27,7 +27,7 @@ const appusage = [
         type: 'confirm',
         name: 'applicationusage',
         message: chalk.magenta('Would you like to include Application Usage Section?'),
-        default: false
+        default: true
     },
     {
         type: "list",
@@ -64,8 +64,8 @@ const installation = [
     {
         type: 'confirm',
         name: 'includeinstalation',
-        message: 'Would you like to include the Installation Section?',
-        default: false
+        message: chalk.yellow('Would you like to include the Installation Section?'),
+        default: true
     },
     {
         type: 'input',
@@ -146,7 +146,7 @@ const badgesquestions = [
         type: 'confirm',
         name: 'includebadge',
         message: chalk.green('Would you like to include badges?'),
-        default: false
+        default: true
     },
     {
         type: 'checkbox',
@@ -200,7 +200,7 @@ const license = [
         type: 'confirm',
         name: 'includelicense',
         message: 'Do you want to include an MIT license?',
-        default: false
+        default: true
     }
 ]
 
@@ -213,8 +213,8 @@ const contactme = [
     {
         type: 'confirm',
         name: 'includecontact',
-        message: chalk.blue('Do you want to include a Contact me Section?'),
-        default: false
+        message: chalk.blue('Do you want to include a Contact me and Questions Section?'),
+        default: true
     },
     {
         type: "input",
@@ -229,7 +229,7 @@ const contactme = [
         type: "input",
         name: "contactproject",
         message: chalk.blue('Please enter your GitHub Repository address?'),
-        default: "[Project Readme-bot](https://github.com/gusmiller/Readme-Bot)",
+        default: "[https://github.com/gusmiller/Readme-Bot](https://github.com/gusmiller/Readme-Bot)",
         when(answer) {
             return answer.includecontact === true;
         }
