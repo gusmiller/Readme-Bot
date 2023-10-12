@@ -64,7 +64,7 @@ const installation = [
     {
         type: 'confirm',
         name: 'includeinstalation',
-        message: 'Would you like to include the Installation Section?',
+        message: chalk.yellow('Would you like to include the Installation Section?'),
         default: false
     },
     {
