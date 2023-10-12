@@ -229,7 +229,7 @@ const contactme = [
         type: "input",
         name: "contactproject",
         message: chalk.blue('Please enter your GitHub Repository address?'),
-        default: "[Project Readme-bot](https://github.com/gusmiller/Readme-Bot)",
+        default: "[https://github.com/gusmiller/Readme-Bot](https://github.com/gusmiller/Readme-Bot)",
         when(answer) {
             return answer.includecontact === true;
         }
