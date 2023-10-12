@@ -29,6 +29,12 @@ const license = require('./utils/license.js');
 const testapps = require('./utils/testingapps.js');
 const sp = "\n\n";
 
+/**
+ * This was a last minute change - did not realize that I had to implement ALL the questions included in the Readme-bot application. 
+ * This could be done better but it would to for now.
+ */
+let contactquestions = `The purpose of this Readme-bot is to help developers create their project Readme.md file that is required for ALL projects. Over time this application can save the developer lots of time, as this is a tedious process. The Readme-bot can be enhanced and there is growth for much more.\n\nDo not hesitate in contacting me, ${builder.contactdata}.\nYou may find the application at: [Project Readme-bot](${builder.contactproject})\n\nThe current application contains the following questions:\n\n- What is the name of your package?\n- How you want to enter the description?\n- Would you like to include Carleton image?\n- Would you like to include Table of Contents?\n- Would you like to include badges?\n- Please select the badges you like to include HTML5/Websites, .NET/Platform, javascript/Language, jQuery/Language\n- Do you want to include an MIT license?\n- Would you like to include the Installation Section?\n- Please enter the instructions: **Please follow the instructions to install the Readme-bot CLI application**\n- Please enter the cloning github repo (this will be displayed as code): **git clone {repository}**\n- Please enter the NPM initialize command (this will be displayed as code): **npm install**\n- Please enter the command to launch the application (this will be displayed as code): **node index.js**\n- Would you like to include Application Usage Section?\n- How you want to enter the Usage Information? - **Lorem Ipsum or Free-Typing**\n- Would you like to include a Contribution Section?\n- How would you like to create your contribution? By.. **Lorem Ipsum, Standard Text or Free-Typing**\n- Do you want to include a Contact me and Questions Section?\n- Please enter your Contact information?\n- Please enter your GitHub Repository address?\n- Would you like to include a Testing Section?\n- How would you like to create the Testing content? By.. **Lorem Ipsum, Standard Text or Free-Typing**\n` 
+
 let buildfilesrting = "";
 
 let builder = {
@@ -74,7 +80,7 @@ function writeToFile() {
     CommonSection("license", "License", license.license, builder.includelicense) // Build the License section
     CommonSection("usage", "Application Usage", builder.applicationusage, builder.includeusage) // Build the application usage section
     CommonSection("contribution", "Contributing ", builder.contributiondata, builder.includecontributions) // Build the application usage section
-    CommonSection("contactme", "Contact Me ", builder.contactdata + sp + builder.contactproject, builder.includecontact) // Build the application usage section
+    CommonSection("contactme", "Questions? Contact Me ", contactquestions, builder.includecontact) // Build the application usage section
     CommonSection("testing", "Testing Application ", builder.testingformation, builder.includetesting) // Build the testing section
 
     buildfilesrting += "---\n© 2023 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved. Developed by Gustavo Miller";
@@ -323,7 +329,7 @@ function BuildTableContent() {
             buildfilesrting += "\t\t<li><a href=\"#contribution\">Contributions</a></li>\n"
         };
         if (builder.includecontact === true) {
-            buildfilesrting += "\t\t<li><a href=\"#contactme\">Contact Me!</a></li>\n"
+            buildfilesrting += "\t\t<li><a href=\"#contactme\">Questions? Contact Me!</a></li>\n"
         };
         if (builder.includetesting === true) {
             buildfilesrting += "\t\t<li><a href=\"#testing\">Testing Application</a></li>\n"
