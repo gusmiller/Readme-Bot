@@ -145,12 +145,15 @@ const BadgeImages = () => {
         .then((answer) => {
             builder.includeimage = answer.includeimage; // Store wheter image is needed
             builder.tablecontents = answer.tablecontents; // Store table of contents
+
             if (answer.includebadge === true) {
                 answer.badgeslist.forEach((badge) => {
                     builder.badgeslist.push(badge); // Store the badges selected
                 });
             }
+
             AddLicenseSection(); // Call License questions
+
         });
 }
 
@@ -164,9 +167,14 @@ const AddLicenseSection = () => {
     inquirer.prompt(questions.license)
         .then((answer) => {
             if (answer.includelicense === true) {
+
+                builder.badgeslist.push("License/MIT"); // Push MIT license
                 builder.includelicense = true // Store include license response
+
             }
+
             AddInstallation(); // Call Add installation questions
+            
         });
 }
 

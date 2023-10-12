@@ -213,7 +213,7 @@ const contactme = [
     {
         type: 'confirm',
         name: 'includecontact',
-        message: chalk.blue('Do you want to include a Contact me Section?'),
+        message: chalk.blue('Do you want to include a Contact me and Questions Section?'),
         default: true
     },
     {
