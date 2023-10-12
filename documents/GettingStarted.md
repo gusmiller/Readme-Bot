@@ -6,7 +6,7 @@ Here are some guidelines to help you get started:
 
 * ~~Make sure that your repo includes a `package.json` with the required dependencies. You can create one by running `npm init` when you first set up the project, before installing any dependencies.~~
 
-* Include a video of the typical user flow through your application. This includes views of the prompts and the responses after their selection.
+* ~~Include a video of the typical user flow through your application. This includes views of the prompts and the responses after their selection.~~
 
 * Refer to the [Fullstack Blog Video Submission Guide](https://coding-boot-camp.github.io/full-stack/computer-literacy/video-submission-guide) for additional guidance on creating a video.
 
