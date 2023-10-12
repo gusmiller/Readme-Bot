@@ -61,7 +61,6 @@ Here is my product!
 The installation is a simple process, but there are some preliminary commands that we need to run to make sure you have all the dependencies and libraries. Before you even start this application requires node.js to be installed on your computer. If you don’t have Node.js follow these instructions to install
 Please follow these instructions to install the CLI 
 
-
 1. Install Node.js - goto this website for detailed instructions
 	```js
 	https://coding-boot-camp.github.io/full-stack/nodejs/how-to-install-nodejs
@@ -169,7 +168,6 @@ The current application contains the following questions:
 - Please enter your GitHub Repository address?
 - Would you like to include a Testing Section?
 - How would you like to create the Testing content? By.. **Lorem Ipsum, Standard Text or Free-Typing**
-
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

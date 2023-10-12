@@ -313,7 +313,7 @@ function BuildTableContent() {
         buildfilesrting += "\t<summary>Table of Contents</summary>\n";
         buildfilesrting += "\t<ol>\n";
 
-        buildfilesrting += "\t\t<li><a href=\"#Description\">Project Description</a></li>\n";
+        buildfilesrting += "\t\t<li><a href=\"#Description\">Generator Description</a></li>\n";
         if (builder.instructions.length > 0) {
             buildfilesrting += "\t\t<li><a href=\"#installation\">Installation</a></li>\n";
         }
@@ -372,7 +372,7 @@ function BuildInstallationSection() {
  */
 function BuildDescription() {
     buildfilesrting += "<div id=\"Description\" style=\"margin-top: 25px;\">" + sp;
-    buildfilesrting += "## Description" + sp;
+    buildfilesrting += "## Generator Description" + sp;
     buildfilesrting += builder.projectdescription + sp;
     buildfilesrting += "Here is my product!" + sp
     buildfilesrting += "<div style=\"margin-top: 15px;\">\n"
