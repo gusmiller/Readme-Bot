@@ -145,7 +145,7 @@ const BadgeImages = () => {
         .then((answer) => {
             builder.includeimage = answer.includeimage; // Store wheter image is needed
             builder.tablecontents = answer.tablecontents; // Store table of contents
-            if (answer.includebadge == true) {
+            if (answer.includebadge === true) {
                 answer.badgeslist.forEach((badge) => {
                     builder.badgeslist.push(badge); // Store the badges selected
                 });
@@ -163,8 +163,8 @@ const BadgeImages = () => {
 const AddLicenseSection = () => {
     inquirer.prompt(questions.license)
         .then((answer) => {
-            if (answer.includelicense == true) {
-                builder.includelicense = answer.includelicense // Store include license response
+            if (answer.includelicense === true) {
+                builder.includelicense = true // Store include license response
             }
             AddInstallation(); // Call Add installation questions
         });
@@ -196,14 +196,21 @@ const ApplicationUsage = () => {
     inquirer.prompt(questions.appusage)
         .then((answer) => {
 
-            builder.includeusage = answer.applicationusage; // Conditional for usage section
             builder.applicationusage = ""; // Make sure is not undefined
 
-            if (answer.loremusage === "Lorem Ipsum") {
-                builder.applicationusage = `Application usage entered automatically by Lorem Ipsum. ${lorem.p2}`;
-            } else {
-                builder.applicationusage = answer.customusage;
+            //Validate whether we are displaying section
+            if (answer.applicationusage === true) { 
+
+                builder.includeusage = true; // Conditional for usage section
+
+                if (answer.loremusage === "Lorem Ipsum") {
+                    builder.applicationusage = `Application usage entered automatically by Lorem Ipsum. ${lorem.p2}`;
+                } else {
+                    builder.applicationusage = answer.customusage;
+                }
+
             }
+
             ContributionSection(); // Contribution section
         });
 }
@@ -399,11 +406,9 @@ function CommonSection(idname, title, data, includesection) {
 }
 
 function AssertChanges() {
-    fs.appendFile("README.md", ' ', (err) => {
-        if (err) {
-            console.error(`Error appending space to the file: ${err}`);
-        } else {
-            console.log('Space appended to the file successfully');
+    fs.appendFile("README.md", '.', (e, data) => {
+        if (e) {
+            console.error(`Error appending space to the file: ${e}`);
         }
     });
 }
