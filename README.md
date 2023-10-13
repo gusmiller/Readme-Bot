@@ -110,7 +110,7 @@ Application uses inputs and also choices that allowed us to build the body of ea
 
 Once you have created your read me file you're free to change anything you want. Add videos or images that would help the client understand.
 
-
+![Alt text](./assets/images/node002.gif)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
