@@ -29,6 +29,7 @@ const license = require('./utils/license.js');
 const testapps = require('./utils/testingapps.js');
 
 const sp = "\n\n";
+const readmefile = "Readme-new.md";
 
 let buildfilesrting = "";
 
@@ -83,7 +84,7 @@ function writeToFile() {
 
     buildfilesrting += "---\n© 2023 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved. Developed by Gustavo Miller";
 
-    fs.writeFile('README.md', buildfilesrting, (err) =>
+    fs.writeFile(readmefile, buildfilesrting, (err) =>
         err ? console.error(err) : console.log('Success!')
     );
 
@@ -96,8 +97,6 @@ function writeToFile() {
  * We start with the product name.
  */
 const init = () => {
-
-    const readmefile = "README.md";
 
     // Validate whether file exists or not
     if (fs.existsSync(readmefile)) {
@@ -440,7 +439,7 @@ function buildMIT(idname, title, data, includesection) {
  * unless file is created many many times.
  */
 function AssertChanges() {
-    fs.appendFile("README.md", '.', (e, data) => {
+    fs.appendFile(readmefile, '.', (e, data) => {
         if (e) {
             console.error(`Error appending space to the file: ${e}`);
         }
