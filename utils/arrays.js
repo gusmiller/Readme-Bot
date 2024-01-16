@@ -13,7 +13,21 @@
 const chalk = require('chalk');
 
 const colors = ["blue", "green", "red", "yellow", "purple", "cyan"]
-const arrbadges = ["HTML5/Websites", ".NET/Platform", "javascript/Language", "jQuery/Language", "nodejs/Server", "Bootstrap/Styling", "CSS3/Cascade Sheets", "github/Versions"]
+const arrbadges = [
+     "npm/Express.js", 
+     "HTML5/Websites", 
+     "DOT.NET/Platform", 
+     "NodeJS/Environment", 
+     "javascript/Language", 
+     "Inquirer/NPM",
+     "jQuery/Language", 
+     "npm/MySQL",
+     "expressJS/MVC",
+     "Bootstrap/CSS", 
+     "React/Library",
+     "Vite/Library",
+     "github/Versions"
+]
 
 const descriptionfill = ["Lorem Ipsum", "Free-Typing"]
 
@@ -23,36 +37,36 @@ const descriptionfill = ["Lorem Ipsum", "Free-Typing"]
  * with pseudo-data.
  */
 const appusage = [
-    {
-        type: 'confirm',
-        name: 'applicationusage',
-        message: chalk.magenta('Would you like to include Application Usage Section?'),
-        default: true
-    },
-    {
-        type: "list",
-        name: "loremusage",
-        message: chalk.magenta("How you want to enter the Usage Information?"),
-        choices: descriptionfill,
-        default: "Lorem Ipsum",
-        when(answer) {
-            return answer.applicationusage === true; // Ask only when required
-        }
-    },
-    {
-        type: "input",
-        name: "customusage",
-        message: chalk.magenta("Please enter Application usage information:"),
-        when(answer) {
-            return answer.applicationusage === true && answer.loremusage !== "Lorem Ipsum"; // Ask only when required
-        },
-        validate(answer) {
-            if (answer.length == 0) {
-                return chalk.red('You must provide an explanation to the usage of the application! Press Ctrl-C to cancel');
-            }
-            return true;
-        }
-    }
+     {
+          type: 'confirm',
+          name: 'applicationusage',
+          message: chalk.magenta('Would you like to include Application Usage Section?'),
+          default: true
+     },
+     {
+          type: "list",
+          name: "loremusage",
+          message: chalk.magenta("How you want to enter the Usage Information?"),
+          choices: descriptionfill,
+          default: "Lorem Ipsum",
+          when(answer) {
+               return answer.applicationusage === true; // Ask only when required
+          }
+     },
+     {
+          type: "input",
+          name: "customusage",
+          message: chalk.magenta("Please enter Application usage information:"),
+          when(answer) {
+               return answer.applicationusage === true && answer.loremusage !== "Lorem Ipsum"; // Ask only when required
+          },
+          validate(answer) {
+               if (answer.length == 0) {
+                    return chalk.red('You must provide an explanation to the usage of the application! Press Ctrl-C to cancel');
+               }
+               return true;
+          }
+     }
 
 ]
 
@@ -61,48 +75,48 @@ const appusage = [
  * sub-questions: How to clone application, how to run the NPM and how to launch the application.
  */
 const installation = [
-    {
-        type: 'confirm',
-        name: 'includeinstalation',
-        message: chalk.yellow('Would you like to include the Installation Section?'),
-        default: true
-    },
-    {
-        type: 'input',
-        name: 'instructions',
-        message: chalk.yellow('Please enter the instructions:'),
-        default: 'Please follow the instructions to install the Readme-bot CLI application',
-        when(answers) {
-            return answers.includeinstalation === true;
-        }
-    },
-    {
-        type: 'input',
-        name: 'clonecommand',
-        message: chalk.yellow('Please enter the cloning github repo (this will be displayed as code):'),
-        default: 'git clone http://github.com/gusmiller/readme-bot',
-        when(answers) {
-            return answers.includeinstalation === true;
-        }
-    },
-    {
-        type: 'input',
-        name: 'npmpackage',
-        message: chalk.yellow('Please enter the NPM initialize command (this will be displayed as code):'),
-        default: 'npm install',
-        when(answers) {
-            return answers.includeinstalation === true;
-        }
-    },
-    {
-        type: 'input',
-        name: 'runcommand',
-        message: chalk.yellow('Please enter the command to launch the application (this will be displayed as code):'),
-        default: 'node index.js',
-        when(answers) {
-            return answers.includeinstalation === true;
-        }
-    }
+     {
+          type: 'confirm',
+          name: 'includeinstalation',
+          message: chalk.yellow('Would you like to include the Installation Section?'),
+          default: true
+     },
+     {
+          type: 'input',
+          name: 'instructions',
+          message: chalk.yellow('Please enter the instructions:'),
+          default: 'Please follow the instructions to install the Readme-bot CLI application',
+          when(answers) {
+               return answers.includeinstalation === true;
+          }
+     },
+     {
+          type: 'input',
+          name: 'clonecommand',
+          message: chalk.yellow('Please enter the cloning github repo (this will be displayed as code):'),
+          default: 'git clone http://github.com/gusmiller/readme-bot',
+          when(answers) {
+               return answers.includeinstalation === true;
+          }
+     },
+     {
+          type: 'input',
+          name: 'npmpackage',
+          message: chalk.yellow('Please enter the NPM initialize command (this will be displayed as code):'),
+          default: 'npm install',
+          when(answers) {
+               return answers.includeinstalation === true;
+          }
+     },
+     {
+          type: 'input',
+          name: 'runcommand',
+          message: chalk.yellow('Please enter the command to launch the application (this will be displayed as code):'),
+          default: 'node index.js',
+          when(answers) {
+               return answers.includeinstalation === true;
+          }
+     }
 ]
 
 /**
@@ -110,18 +124,18 @@ const installation = [
  * press Ctrl-C to break out of the program.
  */
 const packagename = [
-    {
-        type: 'input',
-        name: 'productname',
-        message: chalk.blue('What is the name of your package?'),
-        default: 'Carlton Coding Bootcamp Certification',
-        validate(value) {
-            if (value.length == 0) {
-                return chalk.red('You must enter a product name! Press Ctrl-C to cancel');
-            }
-            return true;
-        }
-    }
+     {
+          type: 'input',
+          name: 'productname',
+          message: chalk.blue('What is the name of your package?'),
+          default: 'Carlton Coding Bootcamp Certification',
+          validate(value) {
+               if (value.length == 0) {
+                    return chalk.red('You must enter a product name! Press Ctrl-C to cancel');
+               }
+               return true;
+          }
+     }
 ]
 
 /**
@@ -130,33 +144,33 @@ const packagename = [
  * important for my personal liking of a readme file.
  */
 const badgesquestions = [
-    {
-        type: 'confirm',
-        name: 'includeimage',
-        message: chalk.green('Would you like to include Carleton image?'),
-        default: true
-    },
-    {
-        type: 'confirm',
-        name: 'tablecontents',
-        message: chalk.green('Would you like to include Table of Contents? (It will be created based on your selections)'),
-        default: true
-    },
-    {
-        type: 'confirm',
-        name: 'includebadge',
-        message: chalk.green('Would you like to include badges?'),
-        default: true
-    },
-    {
-        type: 'checkbox',
-        name: 'badgeslist',
-        message: 'Please select the badges you like to include',
-        choices: arrbadges,
-        when(answers) {
-            return answers.includebadge !== false;
-        }
-    }
+     {
+          type: 'confirm',
+          name: 'includeimage',
+          message: chalk.green('Would you like to include Carleton image?'),
+          default: true
+     },
+     {
+          type: 'confirm',
+          name: 'tablecontents',
+          message: chalk.green('Would you like to include Table of Contents? (It will be created based on your selections)'),
+          default: true
+     },
+     {
+          type: 'confirm',
+          name: 'includebadge',
+          message: chalk.green('Would you like to include badges?'),
+          default: true
+     },
+     {
+          type: 'checkbox',
+          name: 'badgeslist',
+          message: 'Please select the badges you like to include',
+          choices: arrbadges,
+          when(answers) {
+               return answers.includebadge !== false;
+          }
+     }
 ]
 
 /**
@@ -166,27 +180,27 @@ const badgesquestions = [
  * to enter manually second option will be given to the user to enter description manually.
  */
 const description = [
-    {
-        type: "list",
-        name: "loremdata",
-        message: "How you want to enter the description?",
-        choices: descriptionfill,
-        default: "Lorem Ipsum"
-    },
-    {
-        type: "input",
-        name: "manualdata",
-        message: "Please enter your product description:",
-        when(answer) {
-            return answer.loremdata !== "Lorem Ipsum";
-        },
-        validate(answer) {
-            if (answer.length == 0) {
-                return chalk.red('You must enter a description for your product! Press Ctrl-C to cancel');
-            }
-            return true;
-        }
-    }
+     {
+          type: "list",
+          name: "loremdata",
+          message: "How you want to enter the description?",
+          choices: descriptionfill,
+          default: "Lorem Ipsum"
+     },
+     {
+          type: "input",
+          name: "manualdata",
+          message: "Please enter your product description:",
+          when(answer) {
+               return answer.loremdata !== "Lorem Ipsum";
+          },
+          validate(answer) {
+               if (answer.length == 0) {
+                    return chalk.red('You must enter a description for your product! Press Ctrl-C to cancel');
+               }
+               return true;
+          }
+     }
 ]
 
 /**
@@ -196,12 +210,12 @@ const description = [
  * distributed under different terms and without source code. (ref: https://choosealicense.com/licenses/mit/)
  */
 const license = [
-    {
-        type: 'confirm',
-        name: 'includelicense',
-        message: 'Do you want to include an MIT license?',
-        default: true
-    }
+     {
+          type: 'confirm',
+          name: 'includelicense',
+          message: 'Do you want to include an MIT license?',
+          default: true
+     }
 ]
 
 /**
@@ -210,30 +224,30 @@ const license = [
  * project I may have.
  */
 const contactme = [
-    {
-        type: 'confirm',
-        name: 'includecontact',
-        message: chalk.blue('Do you want to include a Contact me and Questions Section?'),
-        default: true
-    },
-    {
-        type: "input",
-        name: "contactdata",
-        message: chalk.blue('Please enter your Contact information?'),
-        default: "Gustavo Miller - gustavo.miller@miller-hs.com",
-        when(answer) {
-            return answer.includecontact === true;
-        }
-    },
-    {
-        type: "input",
-        name: "contactproject",
-        message: chalk.blue('Please enter your GitHub Repository address?'),
-        default: "[https://github.com/gusmiller/Readme-Bot](https://github.com/gusmiller/Readme-Bot)",
-        when(answer) {
-            return answer.includecontact === true;
-        }
-    }
+     {
+          type: 'confirm',
+          name: 'includecontact',
+          message: chalk.blue('Do you want to include a Contact me and Questions Section?'),
+          default: true
+     },
+     {
+          type: "input",
+          name: "contactdata",
+          message: chalk.blue('Please enter your Contact information?'),
+          default: "Gustavo Miller - gustavo.miller@miller-hs.com",
+          when(answer) {
+               return answer.includecontact === true;
+          }
+     },
+     {
+          type: "input",
+          name: "contactproject",
+          message: chalk.blue('Please enter your GitHub Repository address?'),
+          default: "[https://github.com/gusmiller/Readme-Bot](https://github.com/gusmiller/Readme-Bot)",
+          when(answer) {
+               return answer.includecontact === true;
+          }
+     }
 ]
 
 module.exports = { arrbadges, descriptionfill, packagename, badgesquestions, description, license, installation, colors, appusage, contactme };
