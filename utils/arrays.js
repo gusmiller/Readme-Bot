@@ -13,20 +13,23 @@
 const chalk = require('chalk');
 
 const colors = ["blue", "green", "red", "yellow", "purple", "cyan"]
+const licenses = ["GPL", "LGPL", "Eclipse Public License", "Mozilla Public License", "Apache License Github", "MIT License"]
 const arrbadges = [
-     "npm/Express.js", 
-     "HTML5/Websites", 
-     "DOT.NET/Platform", 
-     "NodeJS/Environment", 
-     "javascript/Language", 
+     "npm/Express.js",
+     "HTML5/Websites",
+     "DOT.NET/Platform",
+     "NodeJS/Environment",
+     "javascript/Language",
      "Inquirer/NPM",
-     "jQuery/Language", 
+     "jQuery/Language",
      "npm/MySQL",
      "expressJS/MVC",
-     "Bootstrap/CSS", 
+     "Bootstrap/CSS",
      "React/Library",
+     "React/GraphQL",
      "Vite/Library",
-     "github/Versions"
+     "github/Versions",
+     "database/MongoDB"
 ]
 
 const descriptionfill = ["Lorem Ipsum", "Free-Typing"]
@@ -127,11 +130,29 @@ const packagename = [
      {
           type: 'input',
           name: 'productname',
-          message: chalk.blue('What is the name of your package?'),
+          message: chalk.blue('What is the title of your Program?'),
           default: 'Carlton Coding Bootcamp Certification',
           validate(value) {
                if (value.length == 0) {
                     return chalk.red('You must enter a product name! Press Ctrl-C to cancel');
+               }
+               return true;
+          }
+     }
+]
+
+/**
+ * This will prompt the user for the name of the application.
+ */
+const applicationName = [
+     {
+          type: 'input',
+          name: 'appname',
+          message: chalk.blue('What is the name of your Application?'),
+          default: 'Application Name',
+          validate(value) {
+               if (value.length == 0) {
+                    return chalk.red('You must enter an application name! Press Ctrl-C to cancel');
                }
                return true;
           }
@@ -211,10 +232,11 @@ const description = [
  */
 const license = [
      {
-          type: 'confirm',
-          name: 'includelicense',
+          type: 'list',
+          name: 'licenseSelect',
           message: 'Do you want to include an MIT license?',
-          default: true
+          choices: licenses,
+          default: "MIT License"
      }
 ]
 
@@ -250,4 +272,6 @@ const contactme = [
      }
 ]
 
-module.exports = { arrbadges, descriptionfill, packagename, badgesquestions, description, license, installation, colors, appusage, contactme };
+module.exports = { arrbadges, descriptionfill, packagename, badgesquestions, 
+     description, license, installation, colors, appusage, contactme,
+     applicationName };
